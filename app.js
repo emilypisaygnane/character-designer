@@ -15,8 +15,6 @@ let headCount = 0;
 let middleCount = 0;
 let bottomCount = 0;
 
-// set state for all of the character's catchphrases
-const catchphrases = [];
 
 headDropdown.addEventListener('change', () => {
     // get the value of the head dropdown
@@ -54,6 +52,9 @@ bottomDropdown.addEventListener('change', () => {
     displayStats();
 });
 
+// set state for all of the character's catchphrases
+const catchphrases = [];
+
 catchphraseButton.addEventListener('click', () => {
     // get the value of the catchphrase input
     const newCatchphrase = catchphraseInput.value;
@@ -67,13 +68,7 @@ catchphraseButton.addEventListener('click', () => {
 
 function displayStats() {
     // text content of the reportEl to tell the user how many times they've changed each piece of the state
-    const statsString = creatsStatsString(headCount, middleCount, bottomCount);
-
-    reportEl.textContent = statsString;
-}
-
-function createStatsSting(headNum, middleNum, bottomNum) {
-    return `You have changed the head ${headNum} times, the body ${middleNum} times, and the pants ${bottomNum} times.`;
+    reportEl.textContent = `You have changed the head ${headCount} times, the body ${middleCount} times, and the pants ${bottomCount} times.`;
 }
 
 function displayCatchphrases() {
@@ -81,12 +76,12 @@ function displayCatchphrases() {
     catchphrasesEl.textContent = '';
     // loop through each catchphrase in state
     for (let catchphrase of catchphrases) {
-        const p = document.createElement('p');
+        const catchphraseEl = document.createElement('p');
     // and for each catchphrase
-        p.textContent = catchphrase;
+        catchphraseEl.textContent = catchphrase;
     // create an HTML element with the catchphrase as its text content
-        p.classList.add('catchphrase');
+        catchphraseEl.classList.add('catchphrase');
     // and append that HTML element to the cleared-out DOM
-        catchphrasesEl.append(p);
+        catchphrasesEl.append(catchphraseEl);
     }
 }
